@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-mulish: "Mulish", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  /* Creating animations for dark mode */
+  transition: background-color 0.3s, border 0.3s;
+}
+
+/* Animated button */
+
+.btn-20,
+.btn-20 *,
+.btn-20 :after,
+.btn-20 :before,
+.btn-20:after,
+.btn-20:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-20 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  appearance: button;
+  background-color: #059669;
+  background-image: none;
+  color: #18181b;
+  cursor: pointer;
+  line-height: 1.5;
+  -webkit-mask-image: -webkit-radial-gradient(#09090b, #047857);
+  mask-image: -webkit-radial-gradient(#09090b, #047857);
+}
+.btn-20:disabled {
+  cursor: default;
+}
+.btn-20:-moz-focusring {
+  outline: auto;
+}
+.btn-20 svg {
+  display: block;
+}
+.btn-20 [hidden] {
+  display: none;
+}
+.btn-20 {
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+.btn-20 span {
+  mix-blend-mode: difference;
+}
+.btn-20:before {
+  background: #047857;
+  content: "";
+  display: block;
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transform: skew(0deg) translateX(-20%);
+  transition: transform 0.2s ease;
+  width: 120%;
+  z-index: -10;
+}
+.btn-20:hover:before {
+  transform: skew(45deg) translateX(75%);
+}
