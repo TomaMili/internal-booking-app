@@ -7,7 +7,7 @@ function Navigation() {
       <NavLink
         to="/dashboard"
         className={({ isActive }) =>
-          `w-full px-8 py-4 flex items-center gap-3 rounded-md transition-all duration-300 ${
+          `w-full px-8 py-4 semi flex items-center gap-3 rounded-md transition-all duration-300 ${
             isActive
               ? "bg-zinc-200 opacity-100 text-emerald-900"
               : "hover:bg-zinc-100"
@@ -15,7 +15,7 @@ function Navigation() {
         }
       >
         <BiHome className="text-[26px]" />
-        <span>Home</span>
+        <span className="font-semibold">Home</span>
       </NavLink>
 
       <NavLink
@@ -29,7 +29,7 @@ function Navigation() {
         }
       >
         <BiCalendar className="text-[26px]" />
-        <span>Bookings</span>
+        <span className="font-semibold">Bookings</span>
       </NavLink>
 
       <NavLink
@@ -43,7 +43,7 @@ function Navigation() {
         }
       >
         <BiBed className="text-[26px]" />
-        <span>Cabins</span>
+        <span className="font-semibold">Rooms</span>
       </NavLink>
 
       <NavLink
@@ -57,7 +57,7 @@ function Navigation() {
         }
       >
         <BiGroup className="text-[26px]" />
-        <span>Users</span>
+        <span className="font-semibold">Users</span>
       </NavLink>
 
       <NavLink
@@ -71,7 +71,7 @@ function Navigation() {
         }
       >
         <BiCog className="text-[26px]" />
-        <span>Settings</span>
+        <span className="font-semibold">Settings</span>
       </NavLink>
     </nav>
   );
