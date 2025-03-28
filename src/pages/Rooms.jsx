@@ -1,17 +1,10 @@
-import { useEffect } from "react";
-import { getRooms } from "../services/apiRooms";
+import RoomsGrid from "../features/rooms/RoomsGrid";
 
+// TODO: make a Rooms page
 function Rooms() {
-  useEffect(function () {
-    getRooms().then((data) => console.log(data));
-  }, []);
-
   return (
-    <div>
-      <img
-        src="https://ulhzgjehimepduybfjcw.supabase.co/storage/v1/object/public/room-images//room-3.webp"
-        alt="room-3"
-      />
+    <div className="bg-zinc-100">
+      <RoomsGrid />
     </div>
   );
 }

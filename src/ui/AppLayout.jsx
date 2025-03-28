@@ -9,7 +9,7 @@ function AppLayout() {
         <Sidebar />
         <div className="flex flex-col min-h-screen">
           <Header />
-          <main className="flex-1 bg-zinc-100 py-16 px-10">
+          <main className="flex-1 bg-zinc-100 py-10 px-10">
             <Outlet />
           </main>
         </div>
