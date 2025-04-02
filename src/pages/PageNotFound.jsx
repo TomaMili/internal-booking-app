@@ -1,5 +1,5 @@
 function PageNotFound() {
-  return <div></div>;
+  return <div>Kriva str</div>;
 }
 
 export default PageNotFound;

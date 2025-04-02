@@ -10,12 +10,13 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { CircleSpinner } from "react-spinners-kit";
 
 // React query setup pt1
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 80 * 1000,
+      staleTime: 0,
     },
   },
 });

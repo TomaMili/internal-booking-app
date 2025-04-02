@@ -1,13 +1,33 @@
+import { BiTrash } from "react-icons/bi";
+
 function RoomItem({ room }) {
   const { id, name, type, capacity, price, discount, desc, image } = room;
+
+  let typeColor = "text-zinc-900";
+
+  switch (type) {
+    case "Queen bed":
+      typeColor = "text-yellow-500 bg-yellow-100";
+      break;
+    case "Double bed":
+      typeColor = "text-red-500 bg-red-100";
+      break;
+    case "Luxury king":
+      typeColor = "text-blue-500 bg-blue-100";
+      break;
+    case "Single bed":
+      typeColor = "text-green-500 bg-green-100";
+      break;
+  }
+
   return (
-    <div className="w-full h-24 px-4 py-2 grid grid-cols-[1.5fr_1fr_1.5fr_2.8fr_1fr_0.7fr] gap-4">
+    <div className="w-full h-24 px-4 py-2 grid grid-cols-[1.5fr_1.2fr_1.5fr_2.8fr_1fr_0.7fr] gap-4 border-b-1 border-zinc-200">
       <section className="flex gap-3">
-        <span className="w-30 h-20 rounded-lg">
+        <span className="w-34 h-18 rounded-lg">
           <img
             src={image}
             alt={`room-${id}`}
-            className="w-30 h-20 rounded-lg"
+            className="w-34 h-18 rounded-lg"
           />
         </span>
         <div className="flex flex-col justify-evenly">
@@ -15,28 +35,28 @@ function RoomItem({ room }) {
         </div>
       </section>
       <section className="flex items-center justify-center">
-        <p
-          className={`font-semibold text-${
-            type === `Queen bed` ? `yellow-400` : `red-400`
-          }`}
-        >
+        <p className={`font-semibold ${typeColor} mr-4 px-2 py-1 rounded-md`}>
           {type}
         </p>
       </section>
-      <section className="flex items-center">
-        <p>Can fit up to {capacity} people</p>
+      <section className="flex items-center font-light">
+        <p>
+          Can fit up to{" "}
+          <span className="font-bold">
+            {capacity > 1 ? `${capacity} people` : `${capacity} person`}
+          </span>
+        </p>
       </section>
-
-      <section className="flex items-center">
+      <section className="flex items-center font-light">
         <p>{desc}</p>
       </section>
       <section className="flex items-center">
-        <span>{price}€</span>
+        <span className="font-bold">{price.toFixed(2)}€ / night</span>
       </section>
       <section className="flex items-center justify-center">
-        <span>
-          <button className="bg-amber-300 px-6 py-2 rounded-2xl">delete</button>
-        </span>
+        <button className="text-[24px] cursor-pointer">
+          <BiTrash />
+        </button>
       </section>
     </div>
   );

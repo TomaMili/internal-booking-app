@@ -1,9 +1,8 @@
 import RoomsGrid from "../features/rooms/RoomsGrid";
 
-// TODO: make a Rooms page
 function Rooms() {
   return (
-    <div className="bg-zinc-100">
+    <div className="flex-1 min-h-0">
       <RoomsGrid />
     </div>
   );

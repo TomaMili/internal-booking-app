@@ -1,5 +1,5 @@
 function Bookings() {
-  return <div></div>;
+  return <div className="h-dvh w-full"></div>;
 }
 
 export default Bookings;
