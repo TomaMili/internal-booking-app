@@ -20,29 +20,33 @@ function RoomsGrid() {
   return (
     <section className="px-2 w-full h-full flex flex-col">
       <div className="flex justify-between items-end">
-        <div className="font-bold text-5xl mb-4 ml-2">All rooms</div>
-        <div className="flex gap-3 font-semibold text-lg mr-2 mb-2">
-          <button className="cursor-pointer">Sort</button>
-          <span className="font-light leading-6.5">|</span>
-          <button className="cursor-pointer">Filter</button>
+        <div className="font-semibold text-5xl mb-4 ml-2">All rooms</div>
+        <div className="flex font-semibold text-lg mr-2 mb-2">
+          <button className="cursor-pointer hover:bg-zinc-200 px-3 rounded-[2px] transition-colors duration-200">
+            Sort
+          </button>
+          <span className="font-extralight leading-6.5">|</span>
+          <button className="cursor-pointer hover:bg-zinc-200 px-3 rounded-[2px] transition-colors duration-200">
+            Filter
+          </button>
         </div>
       </div>
 
-      <div className="bg-white font-bold px-4 py-2 grid grid-cols-[1.5fr_1.2fr_1.5fr_2.8fr_1fr_0.7fr] gap-4">
-        <div className="flex items-center border-r-1 border-zinc-400">Room</div>
-        <div className="flex items-center border-r-1 border-zinc-400">Type</div>
-        <div className="flex items-center border-r-1 border-zinc-400">
+      <div className="bg-white border-b-1 border-zinc-200 font-bold px-4 py-2 grid grid-cols-[1.5fr_1.2fr_1.5fr_2.8fr_1fr_0.7fr] gap-4 rounded-t-sm">
+        <div className="flex items-center border-r-1 border-zinc-200">Room</div>
+        <div className="flex items-center border-r-1 border-zinc-200">Type</div>
+        <div className="flex items-center border-r-1 border-zinc-200">
           Capacity
         </div>
-        <div className="flex items-center border-r-1 border-zinc-400">
+        <div className="flex items-center border-r-1 border-zinc-200">
           Description
         </div>
-        <div className="flex items-center border-r-1 border-zinc-400">
+        <div className="flex items-center border-r-1 border-zinc-200">
           Price
         </div>
         <div className="flex items-center">Actions</div>
       </div>
-      <div className="bg-white overflow-auto flex-1 max-h-[calc(100vh-280px)] min-h-0 w-full">
+      <div className="bg-white overflow-auto flex-1 max-h-[calc(100vh-280px)] min-h-0 w-full rounded-b-sm">
         {rooms.map((room) => (
           <RoomItem key={room.id} room={room} />
         ))}
