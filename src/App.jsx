@@ -11,6 +11,7 @@ import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { CircleSpinner } from "react-spinners-kit";
+import { Toaster } from "react-hot-toast";
 
 // React query setup pt1
 const queryClient = new QueryClient({
@@ -41,6 +42,22 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
+      <Toaster
+        position="bottom-right"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: { duration: 3000 },
+          error: { duration: 5000 },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px, 24px",
+            backgroundColor: "#27272a",
+            color: "#e4e4e7",
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
