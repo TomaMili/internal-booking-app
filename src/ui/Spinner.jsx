@@ -1,6 +1,6 @@
 function Spinner({ size = "80px", color = "#064e3b" }) {
   return (
-    <div className="mt-[19%] h-full w-full flex justify-center items-center">
+    <div className="mt-[19+%] h-full w-full flex justify-center items-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
