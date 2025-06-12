@@ -23,47 +23,40 @@ function RoomsGrid() {
 
   return (
     <>
-      {/* Button to open the NewRoomForm modal */}
-
-      {/* Modal Overlay */}
       {isNewRoomModalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
-          // Optionally, you can add an onClick handler to close when clicking the backdrop:
           onClick={() => setIsNewRoomModalOpen(false)}
         >
-          {/* Stop propagation so clicking inside the modal doesn't close it */}
           <div
             className="relative bg-white rounded-2xl w-full max-w-md mx-4"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={() => setIsNewRoomModalOpen(false)}
               className="absolute top-4 right-6 cursor-pointer text-gray-500 hover:text-gray-700 transition text-2xl"
             >
               ×
             </button>
-            <NewRoomForm />
+            <NewRoomForm setIsNewRoomModalOpen={setIsNewRoomModalOpen} />
           </div>
         </div>
       )}
 
-      {/* Rest of your page */}
-      <section className="px-2 w-full h-full flex flex-col">
+      <section className="px-2 w-full h-full flex flex-col overflow-hidden">
         <div className="flex justify-between items-end">
-          <div className="font-semibold text-5xl mb-3 ml-2 flex items-end">
-            All Rooms{" "}
+          <div className="font-medium text-5xl mb-3 ml-2 flex items-end">
+            All Rooms
             <div>
               <div className="px-2 mx-5 pb-1">
                 <button
                   onClick={() => setIsNewRoomModalOpen(true)}
-                  className="text-sm cursor-pointer px-3 py-2 bg-emerald-700 text-zinc-100 rounded-lg hover:bg-emerald-600 transition duration-300"
+                  className="text-lg cursor-pointer px-4 py-2 bg-emerald-700 text-zinc-100 rounded-md hover:bg-emerald-600 transition duration-300"
                 >
-                  + Add New Room
+                  + Add new room
                 </button>
               </div>
-            </div>{" "}
+            </div>
           </div>
 
           <div className="flex font-semibold text-lg mr-2 mb-2">
