@@ -10,7 +10,7 @@ function Sidebar({ onHover, isNavActive }) {
       <img
         src="public/vite.svg"
         width="60%"
-        className={`mx-4 h-1/8 mt-3 transition-all duration-300`}
+        className={`mx-4 h-1/8 mt-3 transition-all duration-300 `}
       />
       <Navigation isNavActive={isNavActive} />
     </aside>
