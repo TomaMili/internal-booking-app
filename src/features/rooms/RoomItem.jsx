@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { BiTrash } from "react-icons/bi";
-import { deleteCabin } from "../../services/apiRooms";
+import { deleteRoom } from "../../services/apiRooms";
 import toast from "react-hot-toast";
 
 function RoomItem({ room }) {
   const {
-    id: cabinId,
+    id: roomId,
     name,
     type,
     capacity,
@@ -37,7 +37,7 @@ function RoomItem({ room }) {
   const queryClient = useQueryClient();
 
   const { isDeleting, mutate } = useMutation({
-    mutationFn: deleteCabin,
+    mutationFn: deleteRoom,
     onSuccess: () => {
       toast.success("Room deleted successfully");
       queryClient.invalidateQueries({
@@ -54,7 +54,7 @@ function RoomItem({ room }) {
           {image ? (
             <img
               src={image}
-              alt={`room-${cabinId}`}
+              alt={`room-${roomId}`}
               className="w-full h-full rounded-lg"
             />
           ) : (
@@ -95,7 +95,7 @@ function RoomItem({ room }) {
       </section>
       <section className="flex items-center justify-center">
         <button
-          onClick={() => mutate(cabinId)}
+          onClick={() => mutate(room)}
           disabled={isDeleting}
           className="text-[24px] cursor-pointer text-zinc-700 hover:text-zinc-950"
         >
