@@ -1,22 +1,14 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getRooms } from "../../services/apiRooms";
 import RoomItem from "./RoomItem";
 import Spinner from "../../ui/Spinner";
 import ErrorMessage from "../../ui/ErrorMessage";
 import NewRoomForm from "./NewRoomForm";
+import { useGetRooms } from "./useGetRooms";
 
 function RoomsGrid() {
-  const [isNewRoomModalOpen, setIsNewRoomModalOpen] = useState(false);
+  const { isPending, error, rooms } = useGetRooms();
 
-  const {
-    isPending,
-    data: rooms,
-    error,
-  } = useQuery({
-    queryKey: ["rooms"],
-    queryFn: getRooms,
-  });
+  const [isNewRoomModalOpen, setIsNewRoomModalOpen] = useState(false);
 
   if (isPending) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;
