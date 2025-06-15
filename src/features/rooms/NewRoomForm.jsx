@@ -1,31 +1,58 @@
-import { Bed, User, Euro, Percent, FileText, Type } from "lucide-react";
 import { useForm } from "react-hook-form";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createRoom } from "../../services/apiRooms";
-import toast from "react-hot-toast";
+import { Bed, User, Euro, Percent, FileText, Type } from "lucide-react";
+
 import InputField from "./InputField";
 
-function NewRoomForm({ setIsNewRoomModalOpen }) {
-  const queryClient = useQueryClient();
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
+import { useCreateRoom } from "./useCreateRoom";
+import { useEditRoom } from "./useEditRoom";
+
+function NewRoomForm({ roomToEdit = {}, setIsNewRoomModalOpen }) {
+  // HOOKS
+  const { isEditing, editRoom } = useEditRoom();
+  const { isCreating, createRoom } = useCreateRoom();
+
+  const isLoading = isCreating || isEditing;
+
+  // CHECK IF EDIT MODE OR CREATE MODE
+  const { id: editId, ...editValues } = roomToEdit;
+  const isEditMode = Boolean(editId);
+
+  // PREFILL INPUTS IF EDIT MODE
+  const { register, handleSubmit, reset, getValues, formState } = useForm({
+    defaultValues: isEditMode ? editValues : {},
+  });
   const { errors } = formState;
 
-  const { mutate, isLoading: isCreating } = useMutation({
-    mutationFn: createRoom,
-    onSuccess: () => {
-      toast.success("New room successfully created");
-      queryClient.invalidateQueries({ queryKey: ["rooms"] });
-      setIsNewRoomModalOpen(false);
-      reset();
-    },
-    onError: (err) => toast.error(err.message),
-  });
-
+  // FORM SUBMIT
   function handleForm(data) {
-    mutate({ ...data, image: data.image[0] });
+    const image = typeof data.image === "string" ? data.image : data.image[0];
+
+    if (isEditMode) {
+      editRoom(
+        { newRoom: { ...data, image }, id: editId },
+        {
+          onSuccess: () => {
+            setIsNewRoomModalOpen(false);
+            reset();
+          },
+        }
+      );
+    } else {
+      createRoom(
+        { ...data, image: image },
+        {
+          onSuccess: () => {
+            setIsNewRoomModalOpen(false);
+            reset();
+          },
+        }
+      );
+    }
   }
+
+  // FORM ERROR
   function handleFormError(errors) {
     console.log(errors);
   }
@@ -56,7 +83,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               })}
               name="name"
               required
-              disabled={isCreating}
+              disabled={isLoading}
               className="w-full pl-10 pr-4 py-2 border border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
             />
             <Bed className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
@@ -70,7 +97,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               })}
               name="type"
               required
-              disabled={isCreating}
+              disabled={isLoading}
               className="cursor-pointer w-full pl-10 pr-4 py-2 border border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
             >
               <option value="">Select a type</option>
@@ -92,7 +119,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
                 min: { value: 1, message: "Capacity must be at least 1" },
               })}
               required
-              disabled={isCreating}
+              disabled={isLoading}
               className="w-full pl-10 pr-4 py-2 border border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
             />
             <User className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
@@ -111,7 +138,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               })}
               min={0}
               required
-              disabled={isCreating}
+              disabled={isLoading}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
             />
             <Euro className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
@@ -129,7 +156,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               min={0}
               max={100}
               defaultValue={0}
-              disabled={isCreating}
+              disabled={isLoading}
               className="w-full pl-10 pr-4 py-2 border border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
             />
             <Percent className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
@@ -144,7 +171,7 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               name="desc"
               rows="4"
               required
-              disabled={isCreating}
+              disabled={isLoading}
               placeholder="Start typing..."
               className="w-full pl-10 pr-4 py-2 border border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none resize-none transition"
             ></textarea>
@@ -157,10 +184,9 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
               id="image"
               accept="image/*"
               {...register("image", {
-                required: "This field is required",
+                required: isEditMode ? false : "This field is required",
               })}
-              required
-              disabled={isCreating}
+              disabled={isLoading}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 cursor-pointer hover:bg-zinc-200  bg-zinc-300 focus:outline-none transition"
             />
           </InputField>
@@ -169,9 +195,15 @@ function NewRoomForm({ setIsNewRoomModalOpen }) {
             <button
               type="submit"
               className="cursor-pointer w-full py-2 px-4 bg-emerald-700 text-white font-semibold rounded-lg hover:bg-emerald-600 transition duration-300"
-              disabled={isCreating}
+              disabled={isLoading}
             >
-              {isCreating ? "Creating room..." : "Create room"}
+              {isEditMode
+                ? isEditing
+                  ? "Editing room..."
+                  : "Edit Room"
+                : isCreating
+                ? "Creating room..."
+                : "Create room"}
             </button>
             <button
               type="reset"
