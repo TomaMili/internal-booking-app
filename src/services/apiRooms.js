@@ -10,19 +10,30 @@ export async function getRooms() {
   }
   return data;
 }
-export async function createRoom(newRoom) {
-  const imgName = `${Math.random()}-${newRoom.image.name}`.replaceAll("/", "");
-  const imgPath = `${supabaseUrl}/storage/v1/object/public/room-images//${imgName}`;
+export async function createEditRoom(newRoom, id) {
+  const hasImgPath = newRoom.image?.startsWith?.(supabaseUrl);
 
-  const { data, error } = await supabase
-    .from("rooms")
-    .insert([{ ...newRoom, image: imgPath }])
-    .select();
+  const imgName = `${Math.random()}-${newRoom.image.name}`.replaceAll("/", "");
+  const imgPath = hasImgPath
+    ? newRoom.image
+    : `${supabaseUrl}/storage/v1/object/public/room-images//${imgName}`;
+
+  let query = supabase.from("rooms");
+
+  // CREATE ROOM
+  if (!id) query = query.insert([{ ...newRoom, image: imgPath }]);
+
+  // EDIT ROOM
+  if (id) query = query.update({ ...newRoom, image: imgPath }).eq("id", id);
+
+  const { data, error } = await query.select().single();
 
   if (error) {
     console.error(error);
     throw new Error("Room could not be created");
   }
+
+  if (hasImgPath) return data;
 
   const { error: bucketError } = await supabase.storage
     .from("room-images")
