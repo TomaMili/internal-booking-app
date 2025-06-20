@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
-import { HiEllipsisHorizontal, HiEllipsisVertical } from "react-icons/hi2";
+import { HiEllipsisHorizontal } from "react-icons/hi2";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 const ActionsContext = createContext();
