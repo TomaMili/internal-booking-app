@@ -12,9 +12,11 @@ function Table({ columns, children }) {
 
 function Header({ children }) {
   const { columns } = useContext(TableContext);
+  const template = columns.split("_").join(" ");
   return (
     <div
-      className={`bg-white border-b border-zinc-200 font-bold px-4 py-2 grid grid-cols-[${columns}] gap-4 rounded-t`}
+      className={`bg-white border-b border-zinc-200 font-bold px-4 py-2 grid gap-4 rounded-t`}
+      style={{ gridTemplateColumns: template }}
     >
       {children}
     </div>
@@ -22,16 +24,18 @@ function Header({ children }) {
 }
 function Row({ children }) {
   const { columns } = useContext(TableContext);
+  const template = columns.split("_").join(" ");
   return (
     <div
-      className={`w-full h-24 px-4 py-2 grid grid-cols-[${columns}] gap-4 border-b border-zinc-200 hover:bg-zinc-100`}
+      className={`w-full h-24 px-4 py-2 grid gap-4 border-b border-zinc-200 hover:bg-zinc-100`}
+      style={{ gridTemplateColumns: template }}
     >
       {children}
     </div>
   );
 }
 function Body({ data, render }) {
-  if (!data.length) return "No data";
+  if (!data?.length) return "No data";
 
   return (
     <div className="bg-white overflow-auto flex-1 max-h-[calc(100vh-280px)] min-h-0 w-full rounded-b">
