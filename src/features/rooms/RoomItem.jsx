@@ -78,37 +78,42 @@ function RoomItem({ room }) {
           </span>
         </p>
       </section>
-      <section className="flex items-center font-light">
-        <p>{desc}</p>
+      <section className="flex font-light overflow-y-auto">
+        <p className="">{desc}</p>
       </section>
       <section className="flex items-center">
-        <span className="font-bold">{price.toFixed(2)}€ / night</span>
+        <span className="font-bold text-green-700">
+          {discount > 0 ? `${discount.toFixed(2)} €` : "-"}
+        </span>
       </section>
-      <section className="flex items-center justify-center gap-6">
-        <Modal>
-          <Actions.Action>
-            <Actions.Toggle id={room.id} />
-            <Actions.List id={room.id}>
-              <Modal.Open opens="edit">
-                <Actions.Button icon={<BiEdit />}>Edit</Actions.Button>
-              </Modal.Open>
-              <Modal.Open opens="delete">
-                <Actions.Button icon={<BiTrash />}>Delete</Actions.Button>
-              </Modal.Open>
-            </Actions.List>
-            <Modal.Window name="edit">
-              <NewRoomForm roomToEdit={room} />
-            </Modal.Window>
-            <Modal.Window name="delete">
-              <ConfirmDeletion
-                resName={room.name}
-                onConfirm={() => deleteRoom(room)}
-                onCloseModal={() => close()}
-                disabled={isDeleting}
-              />
-            </Modal.Window>
-          </Actions.Action>
-        </Modal>
+      <section className="flex relative items-center">
+        <span className="font-bold">{price.toFixed(2)}€ / night</span>
+        <section className="absolute right-0 -top-2">
+          <Modal>
+            <Actions.Action>
+              <Actions.Toggle id={room.id} />
+              <Actions.List id={room.id}>
+                <Modal.Open opens="edit">
+                  <Actions.Button icon={<BiEdit />}>Edit</Actions.Button>
+                </Modal.Open>
+                <Modal.Open opens="delete">
+                  <Actions.Button icon={<BiTrash />}>Delete</Actions.Button>
+                </Modal.Open>
+              </Actions.List>
+              <Modal.Window name="edit">
+                <NewRoomForm roomToEdit={room} />
+              </Modal.Window>
+              <Modal.Window name="delete">
+                <ConfirmDeletion
+                  resName={room.name}
+                  onConfirm={() => deleteRoom(room)}
+                  onCloseModal={() => close()}
+                  disabled={isDeleting}
+                />
+              </Modal.Window>
+            </Actions.Action>
+          </Modal>
+        </section>
       </section>
     </>
   );

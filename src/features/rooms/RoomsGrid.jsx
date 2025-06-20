@@ -5,12 +5,29 @@ import { useGetRooms } from "./useGetRooms";
 import AddRoom from "./AddRoom";
 import Table from "../../ui/Table";
 import Actions from "../../ui/Actions";
+import TableOperations from "./RoomsTableOperations";
+import { useSearchParams } from "react-router-dom";
 
 function RoomsGrid() {
   const { isPending, error, rooms } = useGetRooms();
+  const [searchParams] = useSearchParams();
 
   if (isPending) return <Spinner />;
   if (error) return <ErrorMessage message={error.message} />;
+
+  const filterVal = searchParams.get("discount") || "all";
+
+  let filteredRooms;
+  if (filterVal === "all") filteredRooms = rooms;
+  if (filterVal === "no-discount")
+    filteredRooms = rooms.filter((room) => room.discount === 0);
+  if (filterVal === "with-discount")
+    filteredRooms = rooms.filter((room) => room.discount > 0);
+
+  const sortBy = searchParams.get("sortBy") || "price-asc";
+  const [field, direction] = sortBy.split("-");
+  const mod = direction === "asc" ? 1 : -1;
+  let sortedRooms = filteredRooms.sort((a, b) => (a[field] - b[field]) * mod);
 
   return (
     <>
@@ -25,15 +42,7 @@ function RoomsGrid() {
             </div>
           </div>
 
-          <div className="flex font-semibold text-lg mr-2 mb-2">
-            <button className="cursor-pointer hover:bg-zinc-200 px-3 rounded transition-colors duration-200">
-              Sort
-            </button>
-            <span className="font-extralight leading-6">|</span>
-            <button className="cursor-pointer hover:bg-zinc-200 px-3 rounded transition-colors duration-200">
-              Filter
-            </button>
-          </div>
+          <TableOperations />
         </div>
 
         <Actions>
@@ -51,11 +60,14 @@ function RoomsGrid() {
               <div className="flex items-center border-r border-zinc-200">
                 Description
               </div>
+              <div className="flex items-center border-r border-zinc-200">
+                Discount
+              </div>
               <div className="flex items-center  border-zinc-200">Price</div>
             </Table.Header>
 
             <Table.Body
-              data={rooms}
+              data={sortedRooms}
               render={(room) => (
                 <Table.Row key={room.id}>
                   <RoomItem room={room} />
