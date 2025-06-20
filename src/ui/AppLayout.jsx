@@ -11,7 +11,7 @@ function AppLayout() {
         style={{ transitionProperty: "grid-template-columns" }}
         className={`grid  ${
           isNavActive ? "grid-cols-[16rem_1fr]" : "grid-cols-[5.5rem_1fr]"
-        } min-h-screen text-zinc-900 transition-all duration-300 ease-in-out`}
+        } min-h-dvh text-zinc-900 transition-all duration-300 ease-in-out`}
       >
         <Sidebar onHover={setIsNavActive} isNavActive={isNavActive} />
         <div className="flex flex-col min-h-screen ">
