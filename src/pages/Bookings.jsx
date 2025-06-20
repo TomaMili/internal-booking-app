@@ -1,9 +1,10 @@
-import Calendar from "../features/check-in-out/Calendar";
+import BookingGrid from "../features/bookings/BookingGrid";
 
 function Bookings() {
   return (
     <div className="h-full w-full">
-      <Calendar />
+      {/* <Calendar /> */}
+      <BookingGrid />
     </div>
   );
 }
