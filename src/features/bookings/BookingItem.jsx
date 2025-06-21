@@ -8,11 +8,10 @@ import ConfirmDeletion from "../../ui/ConfirmDeletion";
 import StatusTag from "../../ui/StatusTag";
 
 import { useCheckOut } from "../check-in-out/useCheckOut";
+import { useDeleteBooking } from "./useDeleteBooking";
 
 import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
 import { BiCheck, BiCheckSquare, BiDetail, BiTrash } from "react-icons/bi";
-
-// import { useDeleteBooking } from "./useDeleteBooking";
 
 function BookingItem({
   booking: {
@@ -29,9 +28,9 @@ function BookingItem({
     rooms: { name: roomName, image },
   },
 }) {
-  const navigate = useNavigate();
   const { checkOut, isCheckingOut } = useCheckOut();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
+  const navigate = useNavigate();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -132,8 +131,8 @@ function BookingItem({
         <Modal.Window name="delete">
           <ConfirmDeletion
             resourceName="booking"
-            // disabled={isDeleting}
-            // onConfirm={() => deleteBooking(bookingId)}
+            disabled={isDeleting}
+            onConfirm={() => deleteBooking(bookingId)}
           />
         </Modal.Window>
       </Modal>
