@@ -1,10 +1,10 @@
 import { HiArrowUpOnSquare } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
-// import { useCheckout } from "../check-in-out/useCheckout";
-// import { useDeleteBooking } from "./useDeleteBooking";
 import { useGetBooking } from "./useGetBooking";
 import { useReturnPage } from "../../hooks/useReturnPage";
+import { useDeleteBooking } from "./useDeleteBooking";
+import { useCheckOut } from "../check-in-out/useCheckOut";
 
 import Spinner from "../../ui/Spinner";
 import Modal from "../../ui/Modal";
@@ -15,8 +15,9 @@ import ConfirmDeletion from "../../ui/ConfirmDeletion";
 
 function BookingPage() {
   const { booking, isLoading, error } = useGetBooking();
-  //   const { checkout, isCheckingOut } = useCheckout();
-  //   const { deleteBooking, isDeleting } = useDeleteBooking();
+  const { isDeleting, deleteBooking } = useDeleteBooking();
+  const { checkOut, isCheckingOut } = useCheckOut();
+
   const returnPage = useReturnPage();
   const navigate = useNavigate();
 
@@ -63,8 +64,10 @@ function BookingPage() {
 
         {status === "checked-in" && (
           <button
-            // onClick={() => checkout(bookingId)}
-            // disabled={isCheckingOut}
+            onClick={() => {
+              checkOut(bookingId, { onSettled: () => navigate(-1) });
+            }}
+            disabled={isCheckingOut}
             className="flex items-center gap-2 text-[1.4rem] font-medium rounded-sm shadow-sm bg-brand-600 text-brand-50 px-[1.6rem] py-[1.2rem] transition-colors hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <HiArrowUpOnSquare className="w-5 h-5" />
@@ -75,7 +78,7 @@ function BookingPage() {
         <Modal>
           <Modal.Open opens="delete">
             <button
-              //   disabled={isDeleting}
+              disabled={isDeleting}
               className="text-[1.4rem] font-medium rounded-sm shadow-sm bg-red-700 text-red-100 px-[1.6rem] py-[1.2rem] transition-colors hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Delete booking
@@ -84,10 +87,10 @@ function BookingPage() {
           <Modal.Window name="delete">
             <ConfirmDeletion
               resourceName="booking"
-              //   disabled={isDeleting}
-              //   onConfirm={() =>
-              //     deleteBooking(bookingId, { onSettled: () => navigate(-1) })
-              //   }
+              disabled={isDeleting}
+              onConfirm={() =>
+                deleteBooking(bookingId, { onSettled: () => navigate(-1) })
+              }
             />
           </Modal.Window>
         </Modal>
