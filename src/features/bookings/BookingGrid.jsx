@@ -1,8 +1,7 @@
-import TableOperations from "../rooms/RoomsTableOperations";
-
 import Actions from "../../ui/Actions";
 import Spinner from "../../ui/Spinner";
 import Table from "../../ui/Table";
+import EmptyPage from "../../ui/EmptyPage";
 
 import BookingItem from "./BookingItem";
 import { useGetBookings } from "./useGetBookings";
@@ -12,7 +11,7 @@ function BookingGrid() {
   const { isLoading, error, bookings } = useGetBookings();
 
   if (isLoading) return <Spinner />;
-  // if (!bookings.length) return <Empty resourceName="bookings" />;
+  if (!bookings.length) return <EmptyPage resourceName="bookings" />;
 
   return (
     <>
