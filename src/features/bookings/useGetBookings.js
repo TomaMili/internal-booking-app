@@ -23,5 +23,6 @@ export function useGetBookings() {
     queryKey: ["bookings", filter, sort],
     queryFn: () => getBookings({ filter, sort }),
   });
+
   return { isLoading, error, bookings };
 }
