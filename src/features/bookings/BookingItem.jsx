@@ -1,22 +1,17 @@
 import { format, isToday } from "date-fns";
-import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiTrash,
-} from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "../../ui/Modal";
-import Table from "../../ui/Table";
 import Actions from "../../ui/Actions";
 import ConfirmDeletion from "../../ui/ConfirmDeletion";
 
 import StatusTag from "../../ui/StatusTag";
 
-import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import { useCheckOut } from "../check-in-out/useCheckOut";
 
-// import { useCheckout } from "../check-in-out/useCheckout";
+import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import { BiCheck, BiCheckSquare, BiDetail, BiTrash } from "react-icons/bi";
+
 // import { useDeleteBooking } from "./useDeleteBooking";
 
 function BookingItem({
@@ -35,7 +30,7 @@ function BookingItem({
   },
 }) {
   const navigate = useNavigate();
-  //   const { checkout, isCheckingOut } = useCheckout();
+  const { checkOut, isCheckingOut } = useCheckOut();
   //   const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const statusToTagName = {
@@ -103,7 +98,7 @@ function BookingItem({
           <Actions.Toggle id={bookingId} />
           <Actions.List id={bookingId}>
             <Actions.Button
-              icon={<HiEye />}
+              icon={<BiDetail />}
               onClick={() => navigate(`/bookings/${bookingId}`)}
             >
               See details
@@ -111,7 +106,7 @@ function BookingItem({
 
             {status === "unconfirmed" && (
               <Actions.Button
-                icon={<HiArrowDownOnSquare />}
+                icon={<BiCheckSquare />}
                 onClick={() => navigate(`/checkin/${bookingId}`)}
               >
                 Check in
@@ -120,16 +115,16 @@ function BookingItem({
 
             {status === "checked-in" && (
               <Actions.Button
-                icon={<HiArrowUpOnSquare />}
-                // onClick={() => checkout(bookingId)}
-                // disabled={isCheckingOut}
+                icon={<BiCheck />}
+                onClick={() => checkOut(bookingId)}
+                disabled={isCheckingOut}
               >
                 Check out
               </Actions.Button>
             )}
 
             <Modal.Open opens="delete">
-              <Actions.Button icon={<HiTrash />}>Delete booking</Actions.Button>
+              <Actions.Button icon={<BiTrash />}>Delete booking</Actions.Button>
             </Modal.Open>
           </Actions.List>
         </Actions.Action>
