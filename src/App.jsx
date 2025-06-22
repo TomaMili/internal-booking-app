@@ -15,6 +15,7 @@ import Booking from "./pages/Booking";
 import PageNotFound from "./pages/PageNotFound";
 
 import AppLayout from "./ui/AppLayout";
+import SecuredRoute from "./ui/SecureRoute";
 
 // React query setup pt1
 const queryClient = new QueryClient({
@@ -31,7 +32,13 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route element={<AppLayout />}>
+          <Route
+            element={
+              <SecuredRoute>
+                <AppLayout />
+              </SecuredRoute>
+            }
+          >
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="bookings" element={<Bookings />} />
