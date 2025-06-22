@@ -1,7 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { BiHome, BiCalendar, BiBed, BiGroup, BiCog } from "react-icons/bi";
+import {
+  BiHome,
+  BiCalendar,
+  BiBed,
+  BiGroup,
+  BiCog,
+  BiLogOut,
+} from "react-icons/bi";
+import Uploader from "../data/Uploader";
+import { useLogout } from "../hooks/useLogout";
 
 function Navigation({ isNavActive }) {
+  const { logout, isLoading } = useLogout();
+
   return (
     <nav
       className={`flex flex-col justify-between h-full w-full px-3 py-2 text-xl items-end tracking-normal font-[500] text-zinc-700 opacity-80 transition-all duration-200 ease-out`}
@@ -86,26 +97,43 @@ function Navigation({ isNavActive }) {
             Users
           </span>
         </NavLink>
+        {/* <Uploader /> */}
       </div>
-      <NavLink
-        to="/settings"
-        className={({ isActive }) =>
-          `w-full px-5 py-4 gap-3 rounded-md transition-all duration-300 flex items-center ${
-            isActive
-              ? "bg-zinc-200 opacity-100 text-emerald-900"
-              : "hover:bg-zinc-100"
-          }`
-        }
-      >
-        <BiCog className="text-[26px] absolute" />
-        <span
-          className={`font-semibold transition-opacity duration-100 ml-9 opacity-0 ${
-            isNavActive && "opacity-100 "
-          }`}
+      <div className={`flex flex-col w-full gap-2.5 `}>
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            `w-full px-5 py-4 gap-3 rounded-md transition-all duration-300 flex items-center ${
+              isActive
+                ? "bg-zinc-200 opacity-100 text-emerald-900"
+                : "hover:bg-zinc-100"
+            }`
+          }
         >
-          Settings
-        </span>
-      </NavLink>
+          <BiCog className="text-[26px] absolute" />
+          <span
+            className={`font-semibold transition-opacity duration-100 ml-9 opacity-0 ${
+              isNavActive && "opacity-100 "
+            }`}
+          >
+            Settings
+          </span>
+        </NavLink>
+        <button
+          onClick={logout}
+          disabled={isLoading}
+          className={`w-full px-4 py-4 gap-3 rounded-md transition-all duration-300 flex items-center hover:bg-zinc-100 cursor-pointer`}
+        >
+          <BiLogOut className="text-[26px] absolute" />
+          <span
+            className={`font-semibold transition-opacity duration-100 ml-9 opacity-0 ${
+              isNavActive && "opacity-100"
+            }`}
+          >
+            Logout
+          </span>
+        </button>
+      </div>
     </nav>
   );
 }
