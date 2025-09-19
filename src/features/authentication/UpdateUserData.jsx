@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useUpdateUser } from "./useUpdateUser";
 import { useGetUser } from "../../hooks/useGetUser";
 import InputField from "../rooms/InputField";
-import { Bed } from "lucide-react";
+import { Bed, ImagePlus, Mail, UserRound } from "lucide-react";
 
 function UpdateUserData() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
@@ -43,7 +43,7 @@ function UpdateUserData() {
       onSubmit={handleSubmit}
       className="w-xl mx-auto p-6 bg-zinc-100 rounded-2xl shadow-xl space-y-5 text-sm "
     >
-      <h2 className="text-xl font-bold text-zinc-800">Create Account</h2>
+      <h2 className="text-xl font-bold text-zinc-800">Update Account</h2>
 
       <InputField label={"Email address"}>
         <input
@@ -51,9 +51,9 @@ function UpdateUserData() {
           id="email"
           disabled
           value={email}
-          className="w-full pl-10 pr-4 py-2 border bg-zinc-50 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
+          className="w-full pl-10 pr-4 py-2 border bg-zinc-200 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
         />
-        <Bed className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
+        <Mail className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
       </InputField>
 
       <InputField label={"Full name"}>
@@ -63,22 +63,23 @@ function UpdateUserData() {
           disabled={isUpdating}
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 border bg-zinc-50 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
+          className="w-full pl-10 cursor-pointer pr-4 py-2 border bg-zinc-50 hover:bg-zinc-100 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
         />
-        <Bed className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
+        <UserRound className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" />
       </InputField>
 
-      <InputField label={"Avatar image"}>
+      <label className="block text-sm font-medium text-zinc-700 mb-10 relative">
+        Avatar image
         <input
           id="avatar"
+          type="file"
           disabled={isUpdating}
           accept="image/*"
-          onChange={(e) => setFullName(e.target.value)}
-          className="w-full pl-10 pr-4 py-2 border-0 bg-zinc-50 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
+          onChange={(e) => setAvatar(e.target.files[0])}
+          className="w-full cursor-pointer pl-10 pr-4 py-2 mt-1.5 border-0 bg-zinc-50 hover:bg-zinc-100 border-zinc-300 rounded-lg shadow-sm focus:ring-2 focus:ring-emerald-700 focus:outline-none transition"
         />
-        {/* <Bed className="absolute left-3 top-2.5 h-5 w-5 text-zinc-400" /> */}
-        <div></div>
-      </InputField>
+        <ImagePlus className="absolute left-3 top-8.5 h-5 w-5 text-zinc-400" />
+      </label>
 
       <button
         type="reset"
