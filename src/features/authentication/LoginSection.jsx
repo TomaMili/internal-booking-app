@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLogin } from "./useLogin";
 
 function LoginSection() {
-  const [email, setEmail] = useState("toma@gmail.com");
-  const [password, setPassword] = useState("12345678");
+  const [email, setEmail] = useState("yelmetapsu@necub.com");
+  const [password, setPassword] = useState("tomatoma100");
   const { login, isLoading, error } = useLogin();
 
   const handleSubmit = (e) => {
