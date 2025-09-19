@@ -2,11 +2,9 @@ import supabase from "./supabase";
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
-
   if (error) {
     throw new Error(error.message);
   }
-
   return data;
 }
 export async function updateSetting(newSetting) {
@@ -15,10 +13,8 @@ export async function updateSetting(newSetting) {
     .update(newSetting)
     .eq("id", 1)
     .single();
-
   if (error) {
     throw new Error(error.message);
   }
-
   return data;
 }
