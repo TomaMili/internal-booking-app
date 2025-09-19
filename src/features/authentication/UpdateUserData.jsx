@@ -10,7 +10,7 @@ function UpdateUserData() {
   const {
     user: {
       email,
-      user_metadata: { name: currentFullName },
+      user_metadata: { fullName: currentFullName },
     },
   } = useGetUser();
 
