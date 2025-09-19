@@ -3,11 +3,11 @@ function DashboardBox({ children }) {
     <div
       className="
         bg-white 
-        border border-gray-200 
+        border-1 border-zinc-200 
         rounded-md 
         p-8 
         flex flex-col gap-6
-        w-494
+        w-full col-span-4
       "
     >
       {children}

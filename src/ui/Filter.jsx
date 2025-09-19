@@ -13,7 +13,7 @@ function Filter({ filterField, options }) {
   }
 
   return (
-    <div className="flex gap-1 p-1 border border-gray-100 bg-white shadow-sm rounded-sm">
+    <div className="flex gap-1 p-1 border border-zinc-100 bg-white shadow-sm rounded-sm">
       {options.map((option) => {
         const isActive = option.value === currentFilter;
 

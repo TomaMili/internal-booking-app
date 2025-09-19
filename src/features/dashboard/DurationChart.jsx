@@ -64,7 +64,7 @@ function DurationChart({ confirmedStays }) {
     <div
       className="
         bg-white 
-        border border-gray-200 
+        border border-zinc-200 
         rounded-md 
         p-6 md:p-8 
         col-span-2 

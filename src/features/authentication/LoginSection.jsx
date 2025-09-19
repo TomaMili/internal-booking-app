@@ -6,7 +6,7 @@ import { useLogin } from "./useLogin";
 
 function LoginSection() {
   const [email, setEmail] = useState("yelmetapsu@necub.com");
-  const [password, setPassword] = useState("tomatoma100");
+  const [password, setPassword] = useState("11111111");
   const { login, isLoading, error } = useLogin();
 
   const handleSubmit = (e) => {

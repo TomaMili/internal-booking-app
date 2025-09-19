@@ -8,7 +8,7 @@ function TodayActivity() {
   return (
     <div
       className="
-        bg-white border border-gray-100 rounded-md 
+        bg-white border border-zinc-200 rounded-md 
         p-8 pt-6 flex flex-col gap-6 
         col-span-2
       "

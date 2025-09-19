@@ -44,7 +44,7 @@ function Window({ children, name }) {
           >
             <button
               onClick={close}
-              className="absolute top-4 right-6 cursor-pointer text-gray-500 hover:text-gray-700 transition text-2xl"
+              className="absolute top-4 right-6 cursor-pointer text-zinc-500 hover:text-zinc-700 transition text-2xl"
             >
               ×
             </button>

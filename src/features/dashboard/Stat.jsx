@@ -23,7 +23,7 @@ function Stat({ icon, title, value, color }) {
     <div
       className="
         bg-white 
-        border border-gray-200 
+        border border-zinc-200 
         rounded-md 
         p-4 
         grid 

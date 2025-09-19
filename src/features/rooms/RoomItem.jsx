@@ -23,19 +23,19 @@ function RoomItem({ room }) {
 
   switch (type) {
     case "Queen bed":
-      typeColor = "text-yellow-600 bg-yellow-100";
+      typeColor = "text-yellow-700 bg-yellow-100";
       break;
     case "Double bed":
-      typeColor = "text-red-600 bg-red-100";
+      typeColor = "text-red-700 bg-red-100";
       break;
     case "Luxury king":
-      typeColor = "text-blue-600 bg-blue-100";
+      typeColor = "text-blue-700 bg-blue-100";
       break;
     case "Single bed":
-      typeColor = "text-green-600 bg-green-100";
+      typeColor = "text-green-700 bg-green-100";
       break;
     default:
-      typeColor = "text-green-600 bg-green-100";
+      typeColor = "text-green-700 bg-green-100";
   }
 
   return (
@@ -79,7 +79,7 @@ function RoomItem({ room }) {
         </p>
       </section>
       <section className="flex font-light overflow-y-auto">
-        <p className="">{desc}</p>
+        <p className="text-justify text-lg">{desc}</p>
       </section>
       <section className="flex items-center">
         <span className="font-bold text-green-700">

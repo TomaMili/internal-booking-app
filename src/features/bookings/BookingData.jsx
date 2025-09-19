@@ -35,7 +35,7 @@ function BookingData({ booking }) {
   );
 
   return (
-    <section className="bg-gray-50 border border-gray-100 rounded-lg overflow-hidden">
+    <section className="bg-zinc-50 border border-zinc-100 rounded-lg overflow-hidden">
       <header className="bg-brand-500 text-brand-50 p-8 flex justify-between items-center">
         <div className="flex items-center gap-6 text-xl font-semibold">
           <HiOutlineHomeModern className="w-8 h-8" />
@@ -54,7 +54,7 @@ function BookingData({ booking }) {
       </header>
 
       <div className="p-8 pt-6">
-        <div className="flex items-center gap-4 mb-4 text-gray-700">
+        <div className="flex items-center gap-4 mb-4 text-zinc-700">
           {flag && (
             <img
               src={flag}
@@ -65,27 +65,29 @@ function BookingData({ booking }) {
           <p className="font-medium">
             {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
           </p>
-          <span className="text-gray-400">•</span>
+          <span className="text-zinc-400">•</span>
           <p>{email}</p>
-          <span className="text-gray-400">•</span>
+          <span className="text-zinc-400">•</span>
           <p>National ID {nationalIDnum}</p>
         </div>
 
         {description &&
           renderDataItem(
-            <HiOutlineChatBubbleBottomCenterText className="w-8 h-8 text-brand-600" />,
+            <HiOutlineChatBubbleBottomCenterText className="w-8 h-8 text-emerald-600" />,
             "Observations",
             description
           )}
         {renderDataItem(
-          <HiOutlineCheckCircle className="w-8 h-8 text-brand-600" />,
+          <HiOutlineCheckCircle className="w-8 h-8 text-emerald-600" />,
           "Breakfast included?",
           hasBreakfast ? "Yes" : "No"
         )}
 
         <div
-          className={`flex items-center justify-between p-4 mt-6 rounded-sm shadow-sm \${
-            isPaid ? "bg-green-100 text-green-700" : "bg-yellow-100 text-yellow-700"
+          className={`flex items-center justify-between p-4 mt-6 rounded-sm shadow-sm ${
+            isPaid
+              ? "bg-emerald-700 text-emerald-950"
+              : "bg-yellow-500 text-yellow-900"
           }`}
         >
           {renderDataItem(
@@ -105,7 +107,7 @@ function BookingData({ booking }) {
         </div>
       </div>
 
-      <footer className="p-4 text-sm text-gray-500 text-right">
+      <footer className="p-4 text-sm text-zinc-500 text-right">
         <p>Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
       </footer>
     </section>

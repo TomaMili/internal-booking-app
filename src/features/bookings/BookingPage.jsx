@@ -44,7 +44,7 @@ function BookingPage() {
         </div>
         <button
           onClick={returnPage}
-          className="text-[1.4rem] font-medium text-brand-600 bg-transparent border-none rounded-sm transition-colors hover:text-brand-700"
+          className="text-[1.4rem] font-medium text-emerald-600 bg-transparent border-none rounded-sm transition-colors hover:text-emerald-700 cursor-pointer"
         >
           &larr; Back
         </button>
@@ -56,7 +56,7 @@ function BookingPage() {
         {status === "unconfirmed" && (
           <button
             onClick={() => navigate(`/checkin/${bookingId}`)}
-            className="text-[1.4rem] font-medium rounded-sm shadow-sm bg-brand-600 text-brand-50 px-[1.6rem] py-[1.2rem] transition-colors hover:bg-brand-700"
+            className="text-[1.4rem] font-medium rounded-lg shadow-sm bg-emerald-700 cursor-pointer text-emerald-50 px-[1.6rem] py-3 transition-colors hover:bg-emerald-800"
           >
             Check in
           </button>
@@ -68,7 +68,7 @@ function BookingPage() {
               checkOut(bookingId, { onSettled: () => navigate(-1) });
             }}
             disabled={isCheckingOut}
-            className="flex items-center gap-2 text-[1.4rem] font-medium rounded-sm shadow-sm bg-brand-600 text-brand-50 px-[1.6rem] py-[1.2rem] transition-colors hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex cursor-pointer items-center gap-2 text-[1.4rem] font-medium rounded-lg shadow-sm bg-brand-600 text-brand-50 px-[1.6rem] py-3 transition-colors hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <HiArrowUpOnSquare className="w-5 h-5" />
             Check out
@@ -79,7 +79,7 @@ function BookingPage() {
           <Modal.Open opens="delete">
             <button
               disabled={isDeleting}
-              className="text-[1.4rem] font-medium rounded-sm shadow-sm bg-red-700 text-red-100 px-[1.6rem] py-[1.2rem] transition-colors hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="text-[1.4rem] cursor-pointer font-medium rounded-lg shadow-sm bg-red-700 text-red-100 px-[1.6rem] py-3 transition-colors hover:bg-red-800 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Delete booking
             </button>

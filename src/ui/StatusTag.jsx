@@ -4,7 +4,7 @@ function StatusTag({ type = "gray", children }) {
   return (
     <span
       className={clsx(
-        "uppercase cursor-pointer text-sm font-bold rounded-3xl flex items-center justify-center mx-5 my-3",
+        "uppercase cursor-pointer text-sm font-bold rounded-3xl py-3 px-4 flex items-center justify-center mx-5 my-3",
         {
           "text-green-700 bg-green-100": type === "green",
           "text-blue-700 bg-blue-100": type === "blue",
