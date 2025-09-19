@@ -1,16 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
 @import "tailwindcss";
 
-@theme {
-  --font-mulish: "Mulish", sans-serif;
+/* Light mode (default) */
+:root,
+:root.light-mode {
+  /* Grey */
+  --color-zinc-0: #fff;
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-900: #09090b;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+
+  --color-emerald-0: #fff;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+  --color-emerald-950: #022c22;
+
+  --color-red-100: #fee2e2;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+
+  --backdrop-color: rgba(255, 255, 255, 0.1);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
+
+  --image-grayscale: 0;
+  --image-opacity: 100%;
 }
 
-*,
-*::before,
-*::after {
-  /* Creating animations for dark mode */
-  /* transition: background-color 0.3s, border 0.3s; */
+/* Dark mode */
+:root.dark-mode {
+  --color-zinc-950: #fff;
+  --color-zinc-900: #fafafa;
+  --color-zinc-800: #f4f4f5;
+  --color-zinc-700: #e4e4e7;
+  --color-zinc-600: #d4d4d8;
+  --color-zinc-500: #a1a1aa;
+  --color-zinc-400: #71717a;
+  --color-zinc-300: #52525b;
+  --color-zinc-200: #3f3f46;
+  --color-zinc-100: #27272a;
+  --color-zinc-50: #18181b;
+  --color-zinc-0: #09090b;
+
+  --color-white: #18181b;
+  --color-black: #f9fafb;
+
+  --color-gray-50: #9ca3af;
+  --color-gray-100: #9ca3af;
+  --color-gray-200: #9ca3af;
+  --color-gray-300: #9ca3af;
+  --color-gray-400: #9ca3af;
+
+  --color-emerald-900: #059669;
+  --color-emerald-800: #10b981;
+  --color-emerald-700: #34d399;
+  --color-emerald-600: #6ee7b7;
+  --color-emerald-500: #a7f3d0;
+  --color-emerald-400: #d1fae5;
+  --color-emerald-300: #ecfdf5;
+  --color-emerald-200: #fff;
+
+  --color-red-100: #fee2e2;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+
+  --backdrop-color: rgba(0, 0, 0, 0.3);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.4);
+
+  --image-grayscale: 10%;
+  --image-opacity: 90%;
 }
+
+/* Globals */
+
+/* html {
+  font-size: 62.5%;
+}
+*/
+body {
+  font-family: "Mulish", sans-serif;
+  /* color: var(--color-grey-700);
+  background: var(--color-grey-0);
+  transition: color 0.3s, background-color 0.3s;
+  min-height: 100vh;
+  line-height: 1.5;
+  font-size: 1.6rem; */
+}
+/*
+img {
+  max-width: 100%;
+  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
+} */
 
 /* Animated button */
 
