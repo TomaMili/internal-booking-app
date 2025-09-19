@@ -1,5 +1,11 @@
+import UpdateUserData from "../features/authentication/UpdateUserData";
+
 function Account() {
-  return <div></div>;
+  return (
+    <div>
+      <UpdateUserData />
+    </div>
+  );
 }
 
 export default Account;
