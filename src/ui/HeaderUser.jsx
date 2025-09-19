@@ -5,12 +5,12 @@ import { useGetUser } from "../hooks/useGetUser";
 function HeaderUser() {
   const navigate = useNavigate();
   const { user } = useGetUser();
-  const { name, avatar } = user.user_metadata;
+  const { fullName, avatar } = user.user_metadata;
 
   return (
     <div className="flex gap-6 items-center">
       <p className="text-lg font-medium">
-        Welcome back, <span className="font-bold text-xl">{name}</span>
+        Welcome back, <span className="font-bold text-xl">{fullName}</span>
       </p>
       {!avatar ? (
         <LucideUserCircle2
@@ -22,8 +22,9 @@ function HeaderUser() {
       ) : (
         <img
           src={avatar}
-          alt={`${name}-avatar`}
+          alt={`${fullName}-avatar`}
           onClick={() => navigate("/account")}
+          className="w-13 h-13 rounded-4xl cursor-pointer outline-zinc-800 outline-1 hover:outline-emerald-700 transition-all duration-300"
         />
       )}
     </div>
