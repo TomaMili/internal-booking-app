@@ -9,6 +9,8 @@ import {
 } from "react-icons/bi";
 import Uploader from "../data/Uploader";
 import { useLogout } from "../hooks/useLogout";
+import DarkModeToggle from "./DarkModeBtn";
+import DarkModeBtn from "./DarkModeBtn";
 
 function Navigation({ isNavActive }) {
   const { logout, isLoading } = useLogout();
@@ -100,6 +102,7 @@ function Navigation({ isNavActive }) {
         {/* <Uploader /> */}
       </div>
       <div className={`flex flex-col w-full gap-2.5 `}>
+        <DarkModeBtn isNavActive={isNavActive} />
         <NavLink
           to="/settings"
           className={({ isActive }) =>
