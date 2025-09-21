@@ -15,7 +15,6 @@
   --color-zinc-600: #52525b;
   --color-zinc-700: #3f3f46;
   --color-zinc-800: #27272a;
-  --color-zinc-900: #18181b;
   --color-zinc-900: #09090b;
 
   --color-gray-50: #f9fafb;
@@ -118,6 +117,7 @@
 */
 body {
   font-family: "Mulish", sans-serif;
+  transition: color 0.3s, background-color 0.3s;
   /* color: var(--color-grey-700);
   background: var(--color-grey-0);
   transition: color 0.3s, background-color 0.3s;
