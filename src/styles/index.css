@@ -115,25 +115,16 @@
 
 /* Globals */
 
-/* html {
-  font-size: 62.5%;
+*,
+*::before,
+*::after {
+  transition-property: all, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
-*/
 body {
   font-family: "Mulish", sans-serif;
-  transition: color 0.3s, background-color 0.3s;
-  /* color: var(--color-grey-700);
-  background: var(--color-grey-0);
-  transition: color 0.3s, background-color 0.3s;
-  min-height: 100vh;
-  line-height: 1.5;
-  font-size: 1.6rem; */
 }
-/*
-img {
-  max-width: 100%;
-  filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
-} */
 
 /* Animated button */
 
