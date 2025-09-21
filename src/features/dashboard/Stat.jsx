@@ -35,9 +35,9 @@ function Stat({ icon, title, value, color }) {
       "
     >
       <div
-        className={`row-span-2  rounded-full flex items-center justify-center ${bgColor}`}
+        className={`row-span-3  rounded-md flex items-center justify-center ${bgColor}`}
       >
-        <div className={`w-5 h-5 ${textColor}`}>{icon}</div>
+        <div className={`w-7 h-7 ${textColor}`}>{icon}</div>
       </div>
       <h5 className="self-end text-xs uppercase tracking-[0.4px] font-semibold text-gray-500">
         {title}

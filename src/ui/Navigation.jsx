@@ -9,7 +9,6 @@ import {
 } from "react-icons/bi";
 import Uploader from "../data/Uploader";
 import { useLogout } from "../hooks/useLogout";
-import DarkModeToggle from "./DarkModeBtn";
 import DarkModeBtn from "./DarkModeBtn";
 
 function Navigation({ isNavActive }) {

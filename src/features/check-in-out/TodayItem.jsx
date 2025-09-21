@@ -20,20 +20,15 @@ function TodayItem({ activity }) {
         first:border-t
       "
     >
-      {/* Status Tag */}
       {status === "unconfirmed" && <StatusTag type="green">Arriving</StatusTag>}
       {status === "checked-in" && <StatusTag type="blue">Departing</StatusTag>}
 
-      {/* Guest flag */}
       <Flag src={guests.flag} alt={`Flag of ${guests.country}`} />
 
-      {/* Guest name */}
       <div className="font-medium text-xl">{guests.name}</div>
 
-      {/* Nights */}
       <div className="text-xl">{numNights} nights</div>
 
-      {/* Action button */}
       {status === "unconfirmed" && (
         <Button size="small" type="small" as={Link} to={`/checkin/${id}`}>
           Check in

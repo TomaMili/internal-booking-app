@@ -13,12 +13,10 @@ function TodayActivity() {
         col-span-2
       "
     >
-      {/* Header row */}
       <div className="flex items-center justify-between">
         <h2 className="font-medium text-xl mb-3 ml-2">Today</h2>
       </div>
 
-      {/* Content */}
       {!isLoading ? (
         activities?.length > 0 ? (
           <ul className="overflow-y-scroll overflow-x-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
