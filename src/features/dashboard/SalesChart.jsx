@@ -14,20 +14,29 @@ import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 function SalesChart({ bookings, numDays }) {
   const { isDarkMode } = useDarkMode();
 
+  // ✅ ensure bookings is always an array
+  const safeBookings = Array.isArray(bookings) ? bookings : [];
+
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
   });
 
   const data = allDates.map((date) => {
+    const bookingsForDate = safeBookings.filter((booking) =>
+      isSameDay(date, new Date(booking.created_at))
+    );
+
     return {
       label: format(date, "MMM dd"),
-      totalSales: bookings
-        .filter((booking) => isSameDay(date, new Date(booking.created_at)))
-        .reduce((acc, cur) => acc + cur.totalPrice, 0),
-      extrasSales: bookings
-        .filter((booking) => isSameDay(date, new Date(booking.created_at)))
-        .reduce((acc, cur) => acc + cur.extrasPrice, 0),
+      totalSales: bookingsForDate.reduce(
+        (acc, cur) => acc + (cur.totalPrice || 0),
+        0
+      ),
+      extrasSales: bookingsForDate.reduce(
+        (acc, cur) => acc + (cur.extrasPrice || 0),
+        0
+      ),
     };
   });
 
