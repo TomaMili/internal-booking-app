@@ -44,7 +44,7 @@ function Toggle({ id }) {
   return (
     <button
       onClick={handleClick}
-      className="cursor-pointer bg-none border-none p-1.5 rounded-sm translate-x-3 hover:bg-white transition-all duration-200 "
+      className="cursor-pointer bg-none border-none mr-2 p-1.5 rounded-sm translate-x-3 hover:bg-white transition-all duration-200 "
     >
       <HiEllipsisHorizontal size={24} className="text-zinc-700" />
     </button>
@@ -53,7 +53,10 @@ function Toggle({ id }) {
 
 function List({ id, children }) {
   const { activeId, pos, close } = useContext(ActionsContext);
-  const ref = useOutsideClick(close);
+
+  const ref = useOutsideClick(() => {
+    close();
+  }, false);
 
   if (activeId !== id) return null;
 
